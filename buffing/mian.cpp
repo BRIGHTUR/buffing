@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	VideoCapture cap(0);
-	double scale = 0.5;
+	double scale = 1;
 	//0-180
 	//·ôÉ«
 	double i_minH = 0;
@@ -30,8 +30,8 @@ int main()
 		cvtColor(rFrame, hsvMat, COLOR_BGR2HSV);
 		rFrame.copyTo(detectMat);
 		cv::inRange(hsvMat, Scalar(i_minH, i_minS, i_minV), Scalar(i_maxH, i_maxS, i_maxV), detectMat);
-		GaussianBlur(rFrame, medMat, Size(3, 3), 3, 3);
-		medianBlur(rFrame, medMat, 3);
+		GaussianBlur(rFrame, medMat, Size(5, 5), 3, 3);
+		medianBlur(rFrame, medMat, 15);
 		rFrame.copyTo(dipMat);
 		medMat.copyTo(dipMat, detectMat);
 		imshow("whie: in the range", detectMat);
